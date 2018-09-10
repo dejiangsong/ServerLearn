@@ -76,7 +76,10 @@ namespace NHibernateToMySql.Manager {
                     .Add(Restrictions
                     .Eq("Name", name))
                     .UniqueResult<User>();
-                return user.Password == password;
+                if (user == null)
+                    return false;
+                else
+                    return user.Password == password;
             }
 
         }
